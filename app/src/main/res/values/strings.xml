@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MonitorApp</string>
+    <string name="bienvenidaUsuarioTextView">Buenas tardes, Usuario</string>
+    <string name="gestionarAparatosText">GESTIONAR APARATOS</string>
+    <string name="gestionarSensorText">GESTIONAR SENSORES</string>
+    <string name="gestionarHistorialText">VER HISTORIAL</string>
 </resources>
