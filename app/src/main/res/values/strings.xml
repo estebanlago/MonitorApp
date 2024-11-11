@@ -4,4 +4,6 @@
     <string name="gestionarAparatosText">GESTIONAR APARATOS</string>
     <string name="gestionarSensorText">GESTIONAR SENSORES</string>
     <string name="gestionarHistorialText">VER HISTORIAL</string>
+    <string name="agregarUbicacionButtonText">AGREGAR UBICACIÓN</string>
+    <string name="buscarAparatoPorNombreEditText">Buscar aparato por nombre...</string>
 </resources>
