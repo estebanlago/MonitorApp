@@ -64,7 +64,7 @@
         android:backgroundTint="@color/orange"
         android:padding="16sp"
         android:text="@string/gestionarAparatosText"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:icon="@drawable/baseline_edit_location_24" />
 

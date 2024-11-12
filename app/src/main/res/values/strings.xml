@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">MonitorApp</string>
     <string name="bienvenidaUsuarioTextView">Buenas tardes, Usuario</string>
-    <string name="gestionarAparatosText">GESTIONAR APARATOS</string>
+    <string name="gestionarAparatosText">GESTIONAR UBICACIONES</string>
     <string name="gestionarSensorText">GESTIONAR SENSORES</string>
     <string name="gestionarHistorialText">VER HISTORIAL</string>
     <string name="agregarUbicacionButtonText">AGREGAR UBICACIÓN</string>
-    <string name="buscarAparatoPorNombreEditText">Buscar aparato por nombre...</string>
+    <string name="buscarAparatoPorNombreEditText">Buscar ubicacion por nombre</string>
     <string name="agregarSensorButtonText">AGREGAR SENSOR</string>
-    <string name="buscarSensorPorNombreEditText">Buscar sensor por nombre...</string>
+    <string name="buscarSensorPorNombreEditText">Buscar sensor por nombre</string>
     <string name="historialStringTextView">Hoy</string>
     <string name="crearNuevaUbicacionTextView">Crear nueva ubicación</string>
     <string name="nombreUbicacionTextView">Nombre de la ubicación:</string>

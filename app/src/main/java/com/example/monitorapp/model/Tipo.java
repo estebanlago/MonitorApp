@@ -2,13 +2,11 @@ package com.example.monitorapp.model;
 
 public class Tipo {
     private String nombre;
-    private Sensor sensor;
 
     public Tipo() {}
 
-    public Tipo(String nombre, Sensor sensor) {
+    public Tipo(String nombre) {
         this.nombre = nombre;
-        this.sensor = sensor;
     }
 
     public String getNombre() {
@@ -17,14 +15,6 @@ public class Tipo {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public Sensor getSensor() {
-        return sensor;
-    }
-
-    public void setSensor(Sensor sensor) {
-        this.sensor = sensor;
     }
 
     @Override
