@@ -9,4 +9,8 @@
     <string name="agregarSensorButtonText">AGREGAR SENSOR</string>
     <string name="buscarSensorPorNombreEditText">Buscar sensor por nombre...</string>
     <string name="historialStringTextView">Hoy</string>
+    <string name="crearNuevaUbicacionTextView">Crear nueva ubicación</string>
+    <string name="nombreUbicacionTextView">Nombre de la ubicación:</string>
+    <string name="descripcionUbicacionTextView">Descripción de la ubicación:</string>
+    <string name="finalizarUbicacionText">FINALIZAR</string>
 </resources>
