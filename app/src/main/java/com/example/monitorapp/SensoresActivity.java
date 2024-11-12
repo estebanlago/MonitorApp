@@ -24,7 +24,7 @@ public class SensoresActivity extends AppCompatActivity {
         agregarUbicacionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SensoresActivity.this, CrearUbicacionActivity.class);
+                Intent intent = new Intent(SensoresActivity.this, CrearSensorActivity.class);
                 startActivity(intent);
             }
         });

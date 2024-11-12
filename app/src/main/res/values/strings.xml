@@ -13,4 +13,11 @@
     <string name="nombreUbicacionTextView">Nombre de la ubicación:</string>
     <string name="descripcionUbicacionTextView">Descripción de la ubicación:</string>
     <string name="finalizarUbicacionText">FINALIZAR</string>
+    <string name="crearNuevoSensorTextView">Crear nuevo sensor</string>
+    <string name="nombreSensorTextView">Nombre del sensor:</string>
+    <string name="descripcionSensorTextView">Descripción del sensor:</string>
+    <string name="ubicacionSensorTextView">Seleccione la ubicación del sensor:</string>
+    <string name="temperaturaIdealTextView">Ingrese la temperatura ideal en Celsius:</string>
+    <string name="tipoSensorText">Seleccione el tipo de sensor:</string>
+    <string name="finalizarSensorText">FINALIZAR</string>
 </resources>

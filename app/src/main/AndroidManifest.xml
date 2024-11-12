@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MonitorApp"
         tools:targetApi="31">
         <activity
+            android:name=".CrearSensorActivity"
+            android:exported="false" />
+        <activity
             android:name=".CrearUbicacionActivity"
             android:exported="false" />
         <activity

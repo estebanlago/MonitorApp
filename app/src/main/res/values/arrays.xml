@@ -1,0 +1,14 @@
+<resources>
+    <string-array name="tipos_sensor">
+        <item>Elige un tipo de sensor</item>
+        <item>Térmico</item>
+        <item>Flujos</item>
+        <item>Luz</item>
+    </string-array>
+    <string-array name="ubicacion_sensor">
+        <item>Elige una ubicación</item>
+        <item>Invernadero N-1</item>
+        <item>Invernadero N-2</item>
+        <item>Invernadero N-3</item>
+    </string-array>
+</resources>
