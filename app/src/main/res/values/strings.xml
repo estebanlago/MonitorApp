@@ -20,4 +20,6 @@
     <string name="temperaturaIdealTextView">Ingrese la temperatura ideal en Celsius:</string>
     <string name="tipoSensorText">Seleccione el tipo de sensor:</string>
     <string name="finalizarSensorText">FINALIZAR</string>
+    <string name="gestionarUbicacionesTituloTextView">Gestionar ubicaciones</string>
+    <string name="listaUbicacionesString">LISTAR UBICACIONES</string>
 </resources>
