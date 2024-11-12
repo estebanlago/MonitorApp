@@ -21,10 +21,20 @@ public class UbicacionesActivity extends AppCompatActivity {
 
         Button agregarUbicacionButton = findViewById(R.id.agregarUbicacionButton);
 
+        Button listarUbicacionesButton = findViewById(R.id.listarUbicacionesButton);
+
         agregarUbicacionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UbicacionesActivity.this, CrearUbicacionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        listarUbicacionesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UbicacionesActivity.this, ListarUbicacionesActivity.class);
                 startActivity(intent);
             }
         });
