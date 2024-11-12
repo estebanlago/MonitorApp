@@ -4,15 +4,19 @@
               android:orientation="vertical"
               android:padding="8dp"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="wrap_content"
+              android:background="@drawable/recyclerview_border">
   <TextView
       android:id="@+id/nombreUbicacion"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      tools:text="@tools:sample/lorem" />
+      tools:text="@tools:sample/lorem"
+      android:textColor="@color/black"
+      android:textSize="22sp"/>
   <TextView
       android:id="@+id/descripcionUbicacion"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      tools:text="@tools:sample/lorem" />
+      tools:text="@tools:sample/lorem"
+      android:textSize="18sp"/>
 </LinearLayout>

@@ -22,4 +22,5 @@
     <string name="finalizarSensorText">FINALIZAR</string>
     <string name="gestionarUbicacionesTituloTextView">Gestionar ubicaciones</string>
     <string name="listaUbicacionesString">LISTAR UBICACIONES</string>
+    <string name="listadoUbicacionesIngresadasString">Listado de ubicaciones ingresadas</string>
 </resources>
