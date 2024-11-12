@@ -1,22 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:padding="8dp"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@drawable/recyclerview_border">
-  <TextView
-      android:id="@+id/nombreUbicacion"
-      android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/recyclerview_border"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+  <ImageView
+      android:id="@+id/logoUbicacion"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      app:srcCompat="@drawable/baseline_house_siding_gray_24" />
+
+  <LinearLayout
+      android:layout_width="342dp"
       android:layout_height="wrap_content"
-      tools:text="@tools:sample/lorem"
-      android:textColor="@color/black"
-      android:textSize="22sp"/>
-  <TextView
-      android:id="@+id/descripcionUbicacion"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      tools:text="@tools:sample/lorem"
-      android:textSize="18sp"/>
+      android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/nombreUbicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:layout_marginStart="10dp"
+        tools:text="@tools:sample/lorem" />
+
+    <TextView
+        android:id="@+id/descripcionUbicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginStart="10dp"
+        tools:text="@tools:sample/lorem" />
+
+  </LinearLayout>
+
 </LinearLayout>
