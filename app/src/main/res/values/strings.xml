@@ -25,4 +25,5 @@
     <string name="listadoUbicacionesIngresadasString">Listado de ubicaciones ingresadas</string>
     <string name="agregarSensorButtonString">AGREGAR SENSOR</string>
     <string name="gestionarSensoresString">Gestionar sensores</string>
+    <string name="listarSensoresString">LISTAR SENSORES</string>
 </resources>

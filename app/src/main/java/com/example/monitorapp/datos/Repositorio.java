@@ -26,8 +26,8 @@ public class Repositorio {
         tipos.add(new Tipo("HUMEDAD"));
 
         ubicaciones.add(new Ubicacion("INVERNADERO N-1", "2 METROS CUADRADOS"));
-        ubicaciones.add(new Ubicacion("Invernadero N-2", "8 Metros cuadrados"));
-        ubicaciones.add(new Ubicacion("Invernadero N-3", "16 Metros cuadrados"));
+        ubicaciones.add(new Ubicacion("INVERNADERO N-2", "8 METROS CUADRADOS"));
+        ubicaciones.add(new Ubicacion("INVERNADERO N-3", "16 METROS CUADRADOS"));
     }
 
     public static synchronized Repositorio getInstance() {

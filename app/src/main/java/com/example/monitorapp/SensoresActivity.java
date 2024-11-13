@@ -21,10 +21,20 @@ public class SensoresActivity extends AppCompatActivity {
 
         Button agregarUbicacionButton = findViewById(R.id.agregarNuevoSensorButton);
 
+        Button listarUbicacionesButton = findViewById(R.id.listarSensoresButton);
+
         agregarUbicacionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SensoresActivity.this, CrearSensorActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        listarUbicacionesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SensoresActivity.this, ListarSensoresActivity.class);
                 startActivity(intent);
             }
         });
