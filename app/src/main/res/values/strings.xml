@@ -26,4 +26,5 @@
     <string name="agregarSensorButtonString">AGREGAR SENSOR</string>
     <string name="gestionarSensoresString">Gestionar sensores</string>
     <string name="listarSensoresString">LISTAR SENSORES</string>
+    <string name="listadoSensoresString">Listado de sensores ingresados</string>
 </resources>

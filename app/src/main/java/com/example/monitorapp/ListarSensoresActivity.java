@@ -1,24 +1,34 @@
 package com.example.monitorapp;
 
 import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.monitorapp.adapters.SensoresAdapter;
+import com.example.monitorapp.adapters.UbicacionesAdapter;
+import com.example.monitorapp.datos.Repositorio;
+import com.example.monitorapp.model.Ubicacion;
+import com.example.monitorapp.model.Sensor;
+
+import java.util.List;
 
 public class ListarSensoresActivity extends AppCompatActivity {
+
+    private RecyclerView sensoresRecyclerView;
+    private SensoresAdapter sensoresAdapter;
+    private List<Sensor> sensores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_listar_sensores);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        sensoresRecyclerView= findViewById(R.id.listarSensoresRecyclerView);
+        sensoresRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        sensores = Repositorio.getInstance().sensores;
+        sensoresAdapter= new SensoresAdapter(sensores);
+        sensoresRecyclerView.setAdapter(sensoresAdapter);
     }
 }
