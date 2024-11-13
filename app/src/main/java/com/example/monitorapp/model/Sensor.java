@@ -6,17 +6,15 @@ public class Sensor {
     private Float ideal;
     private Ubicacion ubicacion;
     private Tipo tipo;
-    private Registro registro;
 
     public Sensor() {}
 
-    public Sensor(String nombre, String descripcion, Float ideal, Ubicacion ubicacion, Tipo tipo, Registro registro) {
+    public Sensor(String nombre, String descripcion, Float ideal, Ubicacion ubicacion, Tipo tipo) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.ideal = ideal;
         this.ubicacion = ubicacion;
         this.tipo = tipo;
-        this.registro = registro;
     }
 
     public String getNombre() {
@@ -57,14 +55,6 @@ public class Sensor {
 
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
-    }
-
-    public Registro getRegistro() {
-        return registro;
-    }
-
-    public void setRegistro(Registro registro) {
-        this.registro = registro;
     }
 
     @Override

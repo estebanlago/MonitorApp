@@ -22,10 +22,10 @@ public class Repositorio {
         tipos = new ArrayList<>();
         ubicaciones = new ArrayList<>();
 
-        tipos.add(new Tipo("Temperatura"));
-        tipos.add(new Tipo("Humedad"));
+        tipos.add(new Tipo("TEMPERATURA"));
+        tipos.add(new Tipo("HUMEDAD"));
 
-        ubicaciones.add(new Ubicacion("Invernadero N-1", "2 Metros cuadrados"));
+        ubicaciones.add(new Ubicacion("INVERNADERO N-1", "2 METROS CUADRADOS"));
         ubicaciones.add(new Ubicacion("Invernadero N-2", "8 Metros cuadrados"));
         ubicaciones.add(new Ubicacion("Invernadero N-3", "16 Metros cuadrados"));
     }
