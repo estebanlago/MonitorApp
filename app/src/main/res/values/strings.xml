@@ -27,4 +27,6 @@
     <string name="gestionarSensoresString">Gestionar sensores</string>
     <string name="listarSensoresString">LISTAR SENSORES</string>
     <string name="listadoSensoresString">Listado de sensores ingresados</string>
+    <string name="temperaturaIdealFijoString">* TEMPERATURA IDEAL EN °C:</string>
+    <string name="ubicacionDelSensorString">* UBICACIÓN DEL SENSOR:</string>
 </resources>
