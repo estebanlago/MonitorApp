@@ -56,7 +56,8 @@
         android:background="@drawable/edittext_border"
         android:backgroundTint="#F0EAEA"
         android:inputType="text"
-        android:padding="16sp" />
+        android:padding="16sp"
+        android:maxLength="15"/>
 
     <TextView
         android:id="@+id/descripcionUbicacionesTextView"
@@ -91,7 +92,8 @@
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        android:padding="16sp" />
+        android:padding="16sp"
+        android:maxLength="30"/>
 
     <Button
         android:id="@+id/finalizarUbicacionButton"

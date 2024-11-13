@@ -39,14 +39,32 @@ public class CrearUbicacionActivity extends AppCompatActivity {
         ingresarUbicacionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nombre = nombreUbicacionEditText.getText().toString();
-                String descripcion = descripcionUbicacionEditText.getText().toString();
-                Ubicacion nuevaUbicacion = new Ubicacion(nombre, descripcion);
-                ubicaciones.add(nuevaUbicacion);
-                Toast.makeText(CrearUbicacionActivity.this, "Ingreso exitoso", Toast.LENGTH_LONG).show();
-                finish();
+                String nombre = nombreUbicacionEditText.getText().toString().strip().toUpperCase();
+                String descripcion = descripcionUbicacionEditText.getText().toString().strip().toUpperCase();
+                if (nombre.isEmpty()) {
+                    Toast.makeText(CrearUbicacionActivity.this, "Por favor, ingrese un nombre para la ubicación.", Toast.LENGTH_LONG).show();
+                    return;
+                } else if (nombre.length() < 5 ) {
+                    Toast.makeText(CrearUbicacionActivity.this, "El nombre debe tener por lo menos 5 caracteres.", Toast.LENGTH_LONG).show();
+                    return;
+                } else if (nombreYaExiste(nombre)) {
+                    Toast.makeText(CrearUbicacionActivity.this, "El nombre de la ubicación ya existe.", Toast.LENGTH_LONG).show();
+                    return;
+                } else {
+                    Ubicacion nuevaUbicacion = new Ubicacion(nombre, descripcion);
+                    ubicaciones.add(nuevaUbicacion);
+                    Toast.makeText(CrearUbicacionActivity.this, "Ingreso exitoso de ubicación.", Toast.LENGTH_LONG).show();
+                    finish();
+                }
             }
         });
+}
+    private boolean nombreYaExiste(String nombre) {
+        for (Ubicacion ubicacion : ubicaciones) {
+            if (ubicacion.getNombre().equals(nombre)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
-
