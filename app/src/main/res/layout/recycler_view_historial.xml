@@ -18,6 +18,7 @@
         <ImageView
             android:id="@+id/logoSensor"
             android:layout_width="50dp"
+            android:layout_marginStart="30dp"
             android:layout_height="50dp"
             app:srcCompat="@drawable/baseline_fiber_smart_record_24" />
 
