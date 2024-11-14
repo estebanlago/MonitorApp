@@ -54,6 +54,7 @@
         android:background="@drawable/edittext_border"
         android:backgroundTint="#F0EAEA"
         android:inputType="text"
+        android:maxLength="15"
         android:padding="16sp" />
 
     <TextView
@@ -87,6 +88,7 @@
         android:background="@drawable/edittext_border"
         android:backgroundTint="#F0EAEA"
         android:inputType="text"
+        android:maxLength="30"
         android:padding="16sp" />
 
     <TextView
@@ -102,6 +104,7 @@
         android:padding="8sp"
         android:text="@string/temperaturaIdealTextView"
         android:textColor="@color/black"
+        android:maxLength="30"
         android:textSize="20sp" />
 
     <EditText

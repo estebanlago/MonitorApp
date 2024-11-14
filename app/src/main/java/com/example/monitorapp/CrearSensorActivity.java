@@ -61,14 +61,36 @@ public class CrearSensorActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String nombre = nombreSensorEditText.getText().toString().strip().toUpperCase();
                 String descripcion = descripcionSensorEditText.getText().toString().strip().toUpperCase();
-                float temperaturaIdeal = Float.parseFloat(temperaturaIdealSensorEditText.getText().toString());
                 Ubicacion ubicacion = (Ubicacion) ubicacionSensorSpinner.getSelectedItem();
                 Tipo tipo = (Tipo) tipoSensorSpinner.getSelectedItem();
-                Sensor nuevoSensor = new Sensor(nombre, descripcion, temperaturaIdeal, ubicacion, tipo);
-                sensores.add(nuevoSensor);
-                Toast.makeText(CrearSensorActivity.this, "Ingreso exitoso", Toast.LENGTH_LONG).show();
-                finish();
-            }
+                if (nombre.isEmpty()) {
+                    Toast.makeText(CrearSensorActivity.this, "Por favor, ingrese un nombre para el sensor.", Toast.LENGTH_LONG).show();
+                    return;
+                } else if (nombre.length() < 5 ) {
+                    Toast.makeText(CrearSensorActivity.this, "El nombre debe tener por lo menos 5 caracteres.", Toast.LENGTH_LONG).show();
+                } else if (temperaturaIdealSensorEditText.getText().length() == 0 ) {
+                    Toast.makeText(CrearSensorActivity.this, "Por favor, defina la temperatura ideal.", Toast.LENGTH_LONG).show();
+                    return;
+                } else if (nombreYaExiste(nombre)){
+                    Toast.makeText(CrearSensorActivity.this, "El nombre del sensor ya existe.", Toast.LENGTH_LONG).show();
+                    return;
+                } else {
+                    float temperaturaIdeal = Float.parseFloat(temperaturaIdealSensorEditText.getText().toString());
+                    Sensor nuevoSensor = new Sensor(nombre, descripcion, temperaturaIdeal, ubicacion, tipo);
+                    sensores.add(nuevoSensor);
+                    Toast.makeText(CrearSensorActivity.this, "Ingreso exitoso del sensor.", Toast.LENGTH_LONG).show();
+                    finish();
+            }}
         });
     }
+    private boolean nombreYaExiste(String nombre) {
+        for (Sensor sensor : sensores) {
+            if (sensor.getNombre().equals(nombre)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
+
+
