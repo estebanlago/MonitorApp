@@ -14,12 +14,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import java.text.SimpleDateFormat;
 
 import com.example.monitorapp.datos.Repositorio;
 import com.example.monitorapp.model.Ubicacion;
 import com.example.monitorapp.model.Sensor;
+import com.example.monitorapp.model.Registro;
 import com.example.monitorapp.model.Tipo;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class CrearSensorActivity extends AppCompatActivity {
 
@@ -33,6 +42,7 @@ public class CrearSensorActivity extends AppCompatActivity {
     private List<Sensor> sensores;
     private List<Ubicacion> ubicaciones;
     private List<Tipo> tipos;
+    private List<Registro> registros;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +52,7 @@ public class CrearSensorActivity extends AppCompatActivity {
         sensores = Repositorio.getInstance().sensores;
         ubicaciones = Repositorio.getInstance().ubicaciones;
         tipos = Repositorio.getInstance().tipos;
+        registros = Repositorio.getInstance().registros;
 
         nombreSensorEditText = findViewById(R.id.ingresarSensorEditText);
         descripcionSensorEditText = findViewById(R.id.ingresarDescripcionSensorEditText);
@@ -76,8 +87,15 @@ public class CrearSensorActivity extends AppCompatActivity {
                     return;
                 } else {
                     float temperaturaIdeal = Float.parseFloat(temperaturaIdealSensorEditText.getText().toString());
+
+                    Date fechaActual = new Date();
+
                     Sensor nuevoSensor = new Sensor(nombre, descripcion, temperaturaIdeal, ubicacion, tipo);
+                    Registro nuevoRegistro = new Registro(fechaActual, temperaturaIdeal, nuevoSensor);
+
+                    registros.add(nuevoRegistro);
                     sensores.add(nuevoSensor);
+
                     Toast.makeText(CrearSensorActivity.this, "Ingreso exitoso del sensor.", Toast.LENGTH_LONG).show();
                     finish();
             }}
