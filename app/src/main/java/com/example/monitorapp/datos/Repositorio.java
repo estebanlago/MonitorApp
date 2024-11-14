@@ -28,6 +28,9 @@ public class Repositorio {
         ubicaciones.add(new Ubicacion("INVERNADERO N-1", "2 METROS CUADRADOS"));
         ubicaciones.add(new Ubicacion("INVERNADERO N-2", "8 METROS CUADRADOS"));
         ubicaciones.add(new Ubicacion("INVERNADERO N-3", "16 METROS CUADRADOS"));
+
+        sensores.add(new Sensor("SENSOR #1", "MONITOREA LA TEMPERATURA", 4.0f, ubicaciones.get(0), tipos.get(0)));
+        sensores.add(new Sensor("SENSOR #2", "MONITOREA LA HUMEDAD", 1.0f, ubicaciones.get(1), tipos.get(1)));
     }
 
     public static synchronized Repositorio getInstance() {
