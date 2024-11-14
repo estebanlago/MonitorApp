@@ -30,4 +30,6 @@
     <string name="temperaturaIdealFijoString">* TEMPERATURA IDEAL EN °C:</string>
     <string name="ubicacionDelSensorString">* UBICACIÓN DEL SENSOR:</string>
     <string name="tipoDeSensorFijo">* TIPO DE SENSOR:</string>
+    <string name="instanteDelRegistroString">* INSTANTE DEL REGISTRO:</string>
+    <string name="lecturaTextoFijoString">* LECTURA:</string>
 </resources>
