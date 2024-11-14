@@ -37,6 +37,9 @@ public class SensoresAdapter extends RecyclerView.Adapter<SensoresAdapter.ViewHo
         float idealTemperature = sensores.get(position).getIdeal();
         String temperatureString = String.valueOf(idealTemperature);
         holder.getTextViewTemperatura().setText(temperatureString);
+
+        holder.getTextViewUbicacion().setText(sensores.get(position).getUbicacion().getNombre());
+        holder.getTextViewTipoSensor().setText(sensores.get(position).getTipo().getNombre());
     }
 
     @Override
@@ -49,12 +52,16 @@ public class SensoresAdapter extends RecyclerView.Adapter<SensoresAdapter.ViewHo
         private TextView textViewNombre;
         private TextView textViewDescripcion;
         private TextView textViewTemperatura;
+        private TextView textViewUbicacion;
+        private TextView textViewTipoSensor;
 
         public ViewHolder(View view) {
             super(view);
             textViewNombre = view.findViewById(R.id.nombreSensor);
             textViewDescripcion = view.findViewById(R.id.descripcionSensor);
             textViewTemperatura = view.findViewById(R.id.temperaturaDelSensorTextView);
+            textViewUbicacion = view.findViewById(R.id.ubicacionDelSensorTextView);
+            textViewTipoSensor = view.findViewById(R.id.tipoDelSensorTextView);
         }
 
         public TextView getTextViewNombre() {
@@ -67,6 +74,14 @@ public class SensoresAdapter extends RecyclerView.Adapter<SensoresAdapter.ViewHo
 
         public TextView getTextViewTemperatura() {
             return textViewTemperatura;
+        }
+
+        public TextView getTextViewUbicacion() {
+            return textViewUbicacion;
+        }
+
+        public TextView getTextViewTipoSensor() {
+            return textViewTipoSensor;
         }
     }
 

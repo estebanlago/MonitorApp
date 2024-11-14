@@ -29,4 +29,5 @@
     <string name="listadoSensoresString">Listado de sensores ingresados</string>
     <string name="temperaturaIdealFijoString">* TEMPERATURA IDEAL EN °C:</string>
     <string name="ubicacionDelSensorString">* UBICACIÓN DEL SENSOR:</string>
+    <string name="tipoDeSensorFijo">* TIPO DE SENSOR:</string>
 </resources>
