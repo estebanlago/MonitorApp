@@ -31,5 +31,5 @@
     <string name="ubicacionDelSensorString">* UBICACIÓN DEL SENSOR:</string>
     <string name="tipoDeSensorFijo">* TIPO DE SENSOR:</string>
     <string name="instanteDelRegistroString">* INSTANTE DEL REGISTRO:</string>
-    <string name="lecturaTextoFijoString">* LECTURA:</string>
+    <string name="lecturaTextoFijoString">* LECTURA EN CELSIUS:</string>
 </resources>
