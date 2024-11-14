@@ -77,8 +77,8 @@ public class CrearSensorActivity extends AppCompatActivity {
                 if (nombre.isEmpty()) {
                     Toast.makeText(CrearSensorActivity.this, "Por favor, ingrese un nombre para el sensor.", Toast.LENGTH_LONG).show();
                     return;
-                } else if (nombre.length() < 5 ) {
-                    Toast.makeText(CrearSensorActivity.this, "El nombre debe tener por lo menos 5 caracteres.", Toast.LENGTH_LONG).show();
+                } else if (nombre.length() < 5 || nombre.length() > 15) {
+                    Toast.makeText(CrearSensorActivity.this, "El nombre debe tener entre 5 y 15 caracteres.", Toast.LENGTH_LONG).show();
                 } else if (temperaturaIdealSensorEditText.getText().length() == 0 ) {
                     Toast.makeText(CrearSensorActivity.this, "Por favor, defina la temperatura ideal.", Toast.LENGTH_LONG).show();
                     return;

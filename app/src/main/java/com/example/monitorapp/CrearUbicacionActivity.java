@@ -44,8 +44,8 @@ public class CrearUbicacionActivity extends AppCompatActivity {
                 if (nombre.isEmpty()) {
                     Toast.makeText(CrearUbicacionActivity.this, "Por favor, ingrese un nombre para la ubicación.", Toast.LENGTH_LONG).show();
                     return;
-                } else if (nombre.length() < 5 ) {
-                    Toast.makeText(CrearUbicacionActivity.this, "El nombre debe tener por lo menos 5 caracteres.", Toast.LENGTH_LONG).show();
+                } else if (nombre.length() < 5 || nombre.length() > 15) {
+                    Toast.makeText(CrearUbicacionActivity.this, "El nombre debe tener entre 5 y 15 caracteres.", Toast.LENGTH_LONG).show();
                     return;
                 } else if (nombreYaExiste(nombre)) {
                     Toast.makeText(CrearUbicacionActivity.this, "El nombre de la ubicación ya existe.", Toast.LENGTH_LONG).show();
