@@ -86,10 +86,19 @@ public class CrearSensorActivity extends AppCompatActivity {
                     Toast.makeText(CrearSensorActivity.this, "El nombre del sensor ya existe.", Toast.LENGTH_LONG).show();
                     return;
                 } else {
-                    float temperaturaIdeal = Float.parseFloat(temperaturaIdealSensorEditText.getText().toString());
+                    float temperaturaIdeal = 0;
+                    try {
+                        temperaturaIdeal = Float.parseFloat(temperaturaIdealSensorEditText.getText().toString());
+                        if (temperaturaIdeal <= 0) {
+                            Toast.makeText(CrearSensorActivity.this, "La temperatura ideal debe ser un número positivo.", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(CrearSensorActivity.this, "Por favor, ingrese un valor numérico válido para la temperatura ideal.", Toast.LENGTH_LONG).show();
+                        return;
+                    }
 
                     Date fechaActual = new Date();
-
                     Sensor nuevoSensor = new Sensor(nombre, descripcion, temperaturaIdeal, ubicacion, tipo);
                     Registro nuevoRegistro = new Registro(fechaActual, temperaturaIdeal, nuevoSensor);
 
