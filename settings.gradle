@@ -20,4 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "MonitorApp"
-include(":app")
+include ':app'

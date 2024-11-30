@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1069810871238",
+    "project_id": "monitorapp-90f4f",
+    "storage_bucket": "monitorapp-90f4f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069810871238:android:371d5bbad3358e776ae0c7",
+        "android_client_info": {
+          "package_name": "com.example.monitorapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbUl522qPRc5hc7qnSuDZOnRLMX5oYsDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
