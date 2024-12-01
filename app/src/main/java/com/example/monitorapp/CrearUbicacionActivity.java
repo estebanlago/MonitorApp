@@ -54,10 +54,10 @@ public class CrearUbicacionActivity extends AppCompatActivity {
                 String descripcion = descripcionUbicacionEditText.getText().toString().strip().toUpperCase();
 
                 if (nombre.isEmpty()) {
-                    Toast.makeText(CrearUbicacionActivity.this, "Por favor, ingrese un nombre para la ubicación.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CrearUbicacionActivity.this, "Por favor, ingrese un nombre para la ubicación.", Toast.LENGTH_SHORT).show();
                     return;
                 } else if (nombre.length() < 5 || nombre.length() > 15) {
-                    Toast.makeText(CrearUbicacionActivity.this, "El nombre debe tener entre 5 y 15 caracteres.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CrearUbicacionActivity.this, "El nombre debe tener entre 5 y 15 caracteres.", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
                     db.collection("ubicaciones")
@@ -69,26 +69,26 @@ public class CrearUbicacionActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         QuerySnapshot querySnapshot = task.getResult();
                                         if (querySnapshot != null && !querySnapshot.isEmpty()) {
-                                            Toast.makeText(CrearUbicacionActivity.this, "El nombre de ubicación ya existe. Pruebe con otro nombre.", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(CrearUbicacionActivity.this, "El nombre de ubicación ya existe. Pruebe con otro nombre.", Toast.LENGTH_SHORT).show();
                                         } else {
                                             Ubicacion nuevaUbicacion = new Ubicacion(nombre, descripcion);
                                             db.collection("ubicaciones").document().set(nuevaUbicacion)
                                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                         @Override
                                                         public void onSuccess(Void aVoid) {
-                                                            Toast.makeText(CrearUbicacionActivity.this, "Ingreso exitoso de la ubicación.", Toast.LENGTH_LONG).show();
+                                                            Toast.makeText(CrearUbicacionActivity.this, "Ingreso exitoso de la ubicación.", Toast.LENGTH_SHORT).show();
                                                             finish();
                                                         }
                                                     })
                                                     .addOnFailureListener(new OnFailureListener() {
                                                         @Override
                                                         public void onFailure(@NonNull Exception e) {
-                                                            Toast.makeText(CrearUbicacionActivity.this, "Error al ingresar la ubicación.", Toast.LENGTH_LONG).show();
+                                                            Toast.makeText(CrearUbicacionActivity.this, "Error al ingresar la ubicación.", Toast.LENGTH_SHORT).show();
                                                         }
                                                     });
                                         }
                                     } else {
-                                        Toast.makeText(CrearUbicacionActivity.this, "Error al verificar la disponibilidad del nombre.", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(CrearUbicacionActivity.this, "Error al verificar la disponibilidad del nombre.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });

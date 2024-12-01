@@ -72,7 +72,7 @@
         android:backgroundTint="@color/orange"
         android:padding="14sp"
         android:text="@string/listaUbicacionesString"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:icon="@drawable/baseline_format_list_bulleted_24" />
 

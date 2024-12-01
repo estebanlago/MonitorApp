@@ -1,6 +1,9 @@
 package com.example.monitorapp;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,6 +29,9 @@ public class ListarUbicacionesActivity extends AppCompatActivity {
     private RecyclerView ubicacionesRecyclerView;
     private UbicacionesAdapter ubicacionesAdapter;
     private List<Ubicacion> ubicaciones;
+
+    private Button buscarUbicacionButton;
+    private EditText buscarUbicacionEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,5 +65,34 @@ public class ListarUbicacionesActivity extends AppCompatActivity {
 
         ubicacionesAdapter = new UbicacionesAdapter(ubicaciones);
         ubicacionesRecyclerView.setAdapter(ubicacionesAdapter);
+
+        buscarUbicacionButton = findViewById(R.id.buscarUbicacionButton);
+        buscarUbicacionEditText = findViewById(R.id.buscarUbicacionEditText);
+
+        buscarUbicacionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String busquedaUbicacion = buscarUbicacionEditText.getText().toString().trim();
+
+                if (busquedaUbicacion.isEmpty()) {
+                    Toast.makeText(ListarUbicacionesActivity.this, "Por favor, ingresa un nombre.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                db.collection("ubicaciones")
+                        .whereEqualTo("nombre", busquedaUbicacion)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                                    Toast.makeText(ListarUbicacionesActivity.this, "Location found!", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(ListarUbicacionesActivity.this, "No existen ubicaciones con el nombre ingresado.", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+            }
+        });
     }
 }
