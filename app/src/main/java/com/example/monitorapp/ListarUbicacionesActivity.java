@@ -1,6 +1,8 @@
 package com.example.monitorapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -72,7 +74,7 @@ public class ListarUbicacionesActivity extends AppCompatActivity {
         buscarUbicacionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String busquedaUbicacion = buscarUbicacionEditText.getText().toString().trim();
+                String busquedaUbicacion = buscarUbicacionEditText.getText().toString().trim().toUpperCase();
 
                 if (busquedaUbicacion.isEmpty()) {
                     Toast.makeText(ListarUbicacionesActivity.this, "Por favor, ingresa un nombre.", Toast.LENGTH_SHORT).show();
@@ -86,9 +88,9 @@ public class ListarUbicacionesActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                                    Toast.makeText(ListarUbicacionesActivity.this, "Location found!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ListarUbicacionesActivity.this, "No existen ubicaciones que coincidan.", Toast.LENGTH_LONG).show();
                                 } else {
-                                    Toast.makeText(ListarUbicacionesActivity.this, "No existen ubicaciones con el nombre ingresado.", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(ListarUbicacionesActivity.this, "No existen ubicaciones que coincidan.", Toast.LENGTH_LONG).show();
                                 }
                             }
                         });

@@ -33,4 +33,5 @@
     <string name="instanteDelRegistroString">* INSTANTE DEL REGISTRO:</string>
     <string name="lecturaTextoFijoString">* LECTURA EN CELSIUS:</string>
     <string name="buscarUbicacionString">Buscar ubicación...</string>
+    <string name="resultadosTituloBusquedaUbicacionString">Resultados de la búsqueda</string>
 </resources>
