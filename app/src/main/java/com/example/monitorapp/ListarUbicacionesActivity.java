@@ -88,7 +88,8 @@ public class ListarUbicacionesActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                                    Toast.makeText(ListarUbicacionesActivity.this, "No existen ubicaciones que coincidan.", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(ListarUbicacionesActivity.this, ResultadoBusquedaUbicacionActivity.class);
+                                    startActivity(intent);
                                 } else {
                                     Toast.makeText(ListarUbicacionesActivity.this, "No existen ubicaciones que coincidan.", Toast.LENGTH_LONG).show();
                                 }
