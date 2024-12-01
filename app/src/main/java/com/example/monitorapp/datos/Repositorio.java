@@ -16,11 +16,15 @@ public class Repositorio {
     public List<Tipo> tipos;
     public List<Ubicacion> ubicaciones;
 
+    public List<Ubicacion> ubicacionesFiltradas;
+
     protected Repositorio() {
         registros = new ArrayList<>();
         sensores = new ArrayList<>();
         tipos = new ArrayList<>();
         ubicaciones = new ArrayList<>();
+
+        ubicacionesFiltradas = new ArrayList<>();
 
         tipos.add(new Tipo("TEMPERATURA"));
         tipos.add(new Tipo("HUMEDAD"));

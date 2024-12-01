@@ -88,6 +88,14 @@ public class ListarUbicacionesActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                                    for (QueryDocumentSnapshot doc : task.getResult()) {
+                                        if (doc != null) {
+                                            ubicaciones = Repositorio.getInstance().ubicacionesFiltradas;
+                                            ubicaciones.clear();
+                                            Ubicacion ubicacion = doc.toObject(Ubicacion.class);
+                                            ubicaciones.add(ubicacion);
+                                        }
+                                    }
                                     Intent intent = new Intent(ListarUbicacionesActivity.this, ResultadoBusquedaUbicacionActivity.class);
                                     startActivity(intent);
                                 } else {
