@@ -10,6 +10,7 @@ import android.widget.Toast;
 import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -21,10 +22,18 @@ import com.example.monitorapp.model.Ubicacion;
 import com.example.monitorapp.model.Sensor;
 import com.example.monitorapp.model.Registro;
 import com.example.monitorapp.model.Tipo;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.text.SimpleDateFormat;
@@ -50,9 +59,11 @@ public class CrearSensorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_crear_sensor);
 
         sensores = Repositorio.getInstance().sensores;
-        ubicaciones = Repositorio.getInstance().ubicaciones;
-        tipos = Repositorio.getInstance().tipos;
+        ubicaciones = new ArrayList<>();
+        tipos = new ArrayList<>();
         registros = Repositorio.getInstance().registros;
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         nombreSensorEditText = findViewById(R.id.ingresarSensorEditText);
         descripcionSensorEditText = findViewById(R.id.ingresarDescripcionSensorEditText);
@@ -65,7 +76,45 @@ public class CrearSensorActivity extends AppCompatActivity {
         ArrayAdapter<Tipo> tipoAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, tipos);
 
         ubicacionSensorSpinner.setAdapter(ubicacionAdapter);
+        db.collection("ubicaciones").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot doc : task.getResult()) {
+                                if (doc != null) {
+                                    Ubicacion ubicacion = doc.toObject(Ubicacion.class);
+                                    ubicaciones.add(ubicacion);
+                                }
+                                ubicacionAdapter.notifyDataSetChanged();
+                            }
+                        } else {
+                            Toast.makeText(CrearSensorActivity.this,"Error al obtener datos",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
         tipoSensorSpinner.setAdapter(tipoAdapter);
+        db.collection("tipos").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot doc : task.getResult()) {
+                                if (doc != null) {
+                                    Tipo tipo = doc.toObject(Tipo.class);
+                                    tipos.add(tipo);
+                                }
+                                tipoAdapter.notifyDataSetChanged();
+                            }
+                        } else {
+                            Toast.makeText(CrearSensorActivity.this,"Error al obtener datos",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
 
         ingresarSensorButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,11 +148,39 @@ public class CrearSensorActivity extends AppCompatActivity {
                     }
 
                     Date fechaActual = new Date();
-                    Sensor nuevoSensor = new Sensor(nombre, descripcion, temperaturaIdeal, ubicacion, tipo);
-                    Registro nuevoRegistro = new Registro(fechaActual, temperaturaIdeal, nuevoSensor);
 
-                    registros.add(nuevoRegistro);
-                    sensores.add(nuevoSensor);
+                    db.collection("sensores")
+                            .whereEqualTo("nombre", nombre)
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        QuerySnapshot querySnapshot = task.getResult();
+                                        if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                                            Toast.makeText(CrearSensorActivity.this, "El nombre de la ubicación ya existe.", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Sensor nuevoSensor = new Sensor(nombre, descripcion, Float.parseFloat(temperaturaIdealSensorEditText.getText().toString()), ubicacion, tipo);
+                                            db.collection("sensores").document().set(nuevoSensor)
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
+                                                            Toast.makeText(CrearSensorActivity.this, "Ingreso exitoso de la ubicación.", Toast.LENGTH_SHORT).show();
+                                                            finish();
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(CrearSensorActivity.this, "Error al ingresar la ubicación.", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                        }
+                                    } else {
+                                        Toast.makeText(CrearSensorActivity.this, "Error al verificar la disponibilidad del nombre.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
 
                     Toast.makeText(CrearSensorActivity.this, "Ingreso exitoso del sensor.", Toast.LENGTH_LONG).show();
                     finish();
