@@ -16,9 +16,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.monitorapp.adapters.UbicacionesAdapter;
 import com.example.monitorapp.datos.Repositorio;
-import com.example.monitorapp.model.Tipo;
 import com.example.monitorapp.model.Ubicacion;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -34,13 +32,22 @@ import java.util.List;
 
 public class ModificarUbicacionActivity extends AppCompatActivity {
 
+    private EditText nombreUbicacionEditText;
+    private EditText descripcionUbicacionEditText;
+    private Button modificarUbicacionButton;
     private List<Ubicacion> ubicaciones;
+    private Ubicacion ubicacion;
+
     private Spinner ubicacionesSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modificar_ubicacion);
+
+        nombreUbicacionEditText = findViewById(R.id.ingresarNuevaUbicacionEditText);
+        descripcionUbicacionEditText = findViewById(R.id.ingresarNuevaDescripcionEditText);
+        modificarUbicacionButton = findViewById(R.id.finalizarModificarUbicacionButton);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -71,6 +78,51 @@ public class ModificarUbicacionActivity extends AppCompatActivity {
                     }
                 });
 
-        Ubicacion ubicacion = (Ubicacion) ubicacionesSpinner.getSelectedItem();
+        modificarUbicacionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nombre = nombreUbicacionEditText.getText().toString().strip().toUpperCase();
+                String descripcion = descripcionUbicacionEditText.getText().toString().strip().toUpperCase();
+                String nombreAnterior = ubicacionesSpinner.getSelectedItem().toString();
+
+                if (nombre.isEmpty()) {
+                    Toast.makeText(ModificarUbicacionActivity.this, "Por favor, ingrese un nombre para la ubicación.", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (nombre.length() < 5 || nombre.length() > 15) {
+                    Toast.makeText(ModificarUbicacionActivity.this, "El nombre debe tener entre 5 y 15 caracteres.", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    db.collection("ubicaciones").whereEqualTo("nombre", nombreAnterior)
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        for (QueryDocumentSnapshot doc : task.getResult()) {
+                                            String id = doc.getId(); // Get the document ID
+                                            db.collection("ubicaciones").document(id)
+                                                    .update("nombre", nombre, "descripcion", descripcion)
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void unused) {
+                                                            Toast.makeText(ModificarUbicacionActivity.this, "Ubicación actualizada", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(ModificarUbicacionActivity.this, "Error al actualizar ubicación", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                        }
+                                    } else {
+                                        Toast.makeText(ModificarUbicacionActivity.this, "Ubicación no encontrada", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                }
+            }
+        });
     }
 }
