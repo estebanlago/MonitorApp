@@ -17,6 +17,7 @@ public class Repositorio {
     public List<Ubicacion> ubicaciones;
 
     public List<Ubicacion> ubicacionesFiltradas;
+    public List<Ubicacion> sensoresFiltrados;
 
     protected Repositorio() {
         registros = new ArrayList<>();
@@ -25,6 +26,7 @@ public class Repositorio {
         ubicaciones = new ArrayList<>();
 
         ubicacionesFiltradas = new ArrayList<>();
+        sensoresFiltrados = new ArrayList<>();
 
         tipos.add(new Tipo("TEMPERATURA"));
         tipos.add(new Tipo("HUMEDAD"));

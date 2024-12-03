@@ -37,4 +37,5 @@
     <string name="modificarUbicacionString">MODIFICAR UBICACIÓN</string>
     <string name="modificarUbicacionTituloString">Modificar ubicación</string>
     <string name="seleccionarLaUbicacionSpinnerString">Seleccione la ubicación:</string>
+    <string name="buscarSensorString">Buscar sensor...</string>
 </resources>

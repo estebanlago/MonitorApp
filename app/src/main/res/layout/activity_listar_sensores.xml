@@ -25,11 +25,48 @@
         android:textSize="25sp"
         android:textStyle="bold" />
 
+    <EditText
+        android:id="@+id/buscarSensorEditText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tituloListadoSensores"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edittext_border"
+        android:backgroundTint="#F0EAEA"
+        android:hint="@string/buscarSensorString"
+        android:inputType="text"
+        android:maxLength="15"
+        android:padding="16sp" />
+
+    <Button
+        android:id="@+id/buscarSensorButton"
+        android:layout_width="121dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/listarSensoresRecyclerView"
+        android:layout_below="@+id/tituloListadoSensores"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="8sp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="8sp"
+        android:layout_marginBottom="4dp"
+        android:layout_toEndOf="@+id/buscarSensorEditText"
+        android:backgroundTint="@color/orange"
+        android:padding="40sp"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        app:icon="@drawable/baseline_search_24_white" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listarSensoresRecyclerView"
         android:layout_width="386dp"
         android:layout_height="766dp"
-        android:layout_below="@+id/tituloListadoSensores"
+        android:layout_below="@+id/buscarSensorEditText"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="15dp"
