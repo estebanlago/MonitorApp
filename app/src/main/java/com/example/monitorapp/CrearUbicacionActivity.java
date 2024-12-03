@@ -69,7 +69,7 @@ public class CrearUbicacionActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         QuerySnapshot querySnapshot = task.getResult();
                                         if (querySnapshot != null && !querySnapshot.isEmpty()) {
-                                            Toast.makeText(CrearUbicacionActivity.this, "El nombre de ubicación ya existe. Pruebe con otro nombre.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(CrearUbicacionActivity.this, "El nombre de la ubicación ya existe.", Toast.LENGTH_SHORT).show();
                                         } else {
                                             Ubicacion nuevaUbicacion = new Ubicacion(nombre, descripcion);
                                             db.collection("ubicaciones").document().set(nuevaUbicacion)
