@@ -1,11 +1,14 @@
 package com.example.monitorapp;
 
 import android.content.Intent;
+import android.R.layout;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -37,8 +40,9 @@ public class ModificarUbicacionActivity extends AppCompatActivity {
     private Button modificarUbicacionButton;
     private List<Ubicacion> ubicaciones;
     private Ubicacion ubicacion;
+    private ImageView botonDropdown1;
 
-    private Spinner ubicacionesSpinner;
+    private AutoCompleteTextView ubicacionesSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,7 @@ public class ModificarUbicacionActivity extends AppCompatActivity {
         nombreUbicacionEditText = findViewById(R.id.ingresarNuevaUbicacionEditText);
         descripcionUbicacionEditText = findViewById(R.id.ingresarNuevaDescripcionEditText);
         modificarUbicacionButton = findViewById(R.id.finalizarModificarUbicacionButton);
+        botonDropdown1 = findViewById(R.id.imageView1);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -55,7 +60,7 @@ public class ModificarUbicacionActivity extends AppCompatActivity {
 
         ubicaciones = new ArrayList<>();
 
-        ArrayAdapter<Ubicacion> ubicacionAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, ubicaciones);
+        ArrayAdapter<Ubicacion> ubicacionAdapter = new ArrayAdapter<>(this, layout.simple_dropdown_item_1line, ubicaciones);
 
         ubicacionesSpinner.setAdapter(ubicacionAdapter);
 
@@ -83,7 +88,7 @@ public class ModificarUbicacionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String nombre = nombreUbicacionEditText.getText().toString().strip().toUpperCase();
                 String descripcion = descripcionUbicacionEditText.getText().toString().strip().toUpperCase();
-                String nombreAnterior = ubicacionesSpinner.getSelectedItem().toString();
+                String nombreAnterior = ubicacionesSpinner.getText().toString().strip().toUpperCase();
 
                 if (nombre.isEmpty()) {
                     Toast.makeText(ModificarUbicacionActivity.this, "Por favor, ingrese un nombre para la ubicación.", Toast.LENGTH_SHORT).show();
@@ -122,6 +127,13 @@ public class ModificarUbicacionActivity extends AppCompatActivity {
                             });
 
                 }
+            }
+        });
+
+        botonDropdown1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ubicacionesSpinner.showDropDown();
             }
         });
     }
