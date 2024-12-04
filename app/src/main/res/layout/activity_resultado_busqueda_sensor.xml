@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResultadoBusquedaUbicacionActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listarSensoresFiltradosRecyclerView"
+        android:layout_width="386dp"
+        android:layout_height="766dp"
+        android:layout_below="@+id/tituloBusquedaResultadoSensores"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        tools:listitem="@layout/recycler_view_sensores" />
+
+    <TextView
+        android:id="@+id/tituloBusquedaResultadoSensores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="8sp"
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="-79dp"
+        android:layout_marginBottom="8sp"
+        android:padding="8sp"
+        android:text="@string/resultadosTituloBusquedaUbicacionString"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+</RelativeLayout>

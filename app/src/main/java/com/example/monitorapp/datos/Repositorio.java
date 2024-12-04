@@ -17,7 +17,7 @@ public class Repositorio {
     public List<Ubicacion> ubicaciones;
 
     public List<Ubicacion> ubicacionesFiltradas;
-    public List<Ubicacion> sensoresFiltrados;
+    public List<Sensor> sensoresFiltrados;
 
     protected Repositorio() {
         registros = new ArrayList<>();
