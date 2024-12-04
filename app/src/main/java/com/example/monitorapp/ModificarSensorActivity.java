@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.Spinner;
 
@@ -49,6 +50,7 @@ public class ModificarSensorActivity extends AppCompatActivity {
     private Spinner  ubicacionSensorSpinner;
     private Spinner tipoSensorSpinner;
     private Button ingresarSensorButton;
+    private ImageView botonDropdownSensores;
 
     private List<Sensor> sensores;
     private List<Ubicacion> ubicaciones;
@@ -75,6 +77,7 @@ public class ModificarSensorActivity extends AppCompatActivity {
         ubicacionSensorSpinner = findViewById(R.id.modificarUbicacionSpinner);
         tipoSensorSpinner = findViewById(R.id.modificarTipoSensorSpinner);
         ingresarSensorButton = findViewById(R.id.finalizarModifcarSensorButton);
+        botonDropdownSensores = findViewById(R.id.dropdownSensorImageView);
 
         sensoresSpinner = findViewById(R.id.nombreSensorActualSpinner);
 
@@ -160,9 +163,6 @@ public class ModificarSensorActivity extends AppCompatActivity {
                 } else if (temperaturaIdealSensorEditText.getText().length() == 0 ) {
                     Toast.makeText(ModificarSensorActivity.this, "Por favor, defina la temperatura ideal.", Toast.LENGTH_LONG).show();
                     return;
-                } else if (nombreYaExiste(nombre)){
-                    Toast.makeText(ModificarSensorActivity.this, "El nombre del sensor ya existe.", Toast.LENGTH_LONG).show();
-                    return;
                 } else {
                     float temperaturaIdeal = 0;
                     try {
@@ -215,15 +215,15 @@ public class ModificarSensorActivity extends AppCompatActivity {
                     finish();
                 }}
         });
-    }
-    private boolean nombreYaExiste(String nombre) {
-        for (Sensor sensor : sensores) {
-            if (sensor.getNombre().equals(nombre)) {
-                return true;
+        botonDropdownSensores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sensoresSpinner.showDropDown();
             }
-        }
-        return false;
+        });
     }
 }
+
+
 
 
