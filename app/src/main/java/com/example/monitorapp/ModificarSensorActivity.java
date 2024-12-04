@@ -155,6 +155,7 @@ public class ModificarSensorActivity extends AppCompatActivity {
                 String descripcion = descripcionSensorEditText.getText().toString().strip().toUpperCase();
                 Ubicacion ubicacion = (Ubicacion) ubicacionSensorSpinner.getSelectedItem();
                 Tipo tipo = (Tipo) tipoSensorSpinner.getSelectedItem();
+                String nombreSensorActual = sensoresSpinner.getText().toString().strip().toUpperCase();
                 if (nombre.isEmpty()) {
                     Toast.makeText(ModificarSensorActivity.this, "Por favor, ingrese un nombre para el sensor.", Toast.LENGTH_LONG).show();
                     return;
@@ -175,46 +176,39 @@ public class ModificarSensorActivity extends AppCompatActivity {
                         Toast.makeText(ModificarSensorActivity.this, "Por favor, ingrese un valor numérico válido para la temperatura ideal.", Toast.LENGTH_LONG).show();
                         return;
                     }
-
-                    Date fechaActual = new Date();
-
-                    db.collection("sensores")
-                            .whereEqualTo("nombre", nombre)
+                    db.collection("sensores").whereEqualTo("nombre", nombreSensorActual)
                             .get()
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                     if (task.isSuccessful()) {
-                                        QuerySnapshot querySnapshot = task.getResult();
-                                        if (querySnapshot != null && !querySnapshot.isEmpty()) {
-                                            Toast.makeText(ModificarSensorActivity.this, "El nombre de la ubicación ya existe.", Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            Sensor nuevoSensor = new Sensor(nombre, descripcion, Float.parseFloat(temperaturaIdealSensorEditText.getText().toString()), ubicacion, tipo);
-                                            db.collection("sensores").document().set(nuevoSensor)
+                                        for (QueryDocumentSnapshot doc : task.getResult()) {
+                                            String id = doc.getId();
+                                            db.collection("sensores").document(id)
+                                                    .update("nombre", nombre, "descripcion", descripcion, "ideal", Float.parseFloat(temperaturaIdealSensorEditText.getText().toString()), "tipo", tipo, "ubicacion", ubicacion)
                                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                         @Override
-                                                        public void onSuccess(Void aVoid) {
-                                                            Toast.makeText(ModificarSensorActivity.this, "Ingreso exitoso de la ubicación.", Toast.LENGTH_SHORT).show();
-                                                            finish();
+                                                        public void onSuccess(Void unused) {
+                                                            Toast.makeText(ModificarSensorActivity.this, "Ubicación actualizada", Toast.LENGTH_SHORT).show();
                                                         }
                                                     })
                                                     .addOnFailureListener(new OnFailureListener() {
                                                         @Override
                                                         public void onFailure(@NonNull Exception e) {
-                                                            Toast.makeText(ModificarSensorActivity.this, "Error al ingresar la ubicación.", Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(ModificarSensorActivity.this, "Error al actualizar ubicación", Toast.LENGTH_SHORT).show();
                                                         }
                                                     });
                                         }
                                     } else {
-                                        Toast.makeText(ModificarSensorActivity.this, "Error al verificar la disponibilidad del nombre.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ModificarSensorActivity.this, "Ubicación no encontrada", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
 
-                    Toast.makeText(ModificarSensorActivity.this, "Ingreso exitoso del sensor.", Toast.LENGTH_LONG).show();
-                    finish();
-                }}
+                }
+            }
         });
+
         botonDropdownSensores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
