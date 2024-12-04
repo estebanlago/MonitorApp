@@ -23,8 +23,6 @@ public class UbicacionesActivity extends AppCompatActivity {
 
         Button listarUbicacionesButton = findViewById(R.id.listarUbicacionesButton);
 
-        Button modificarUbicacionButton = findViewById(R.id.modificarUbicacionButton);
-
         agregarUbicacionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,14 +35,6 @@ public class UbicacionesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UbicacionesActivity.this, ListarUbicacionesActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        modificarUbicacionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UbicacionesActivity.this, ModificarUbicacionActivity.class);
                 startActivity(intent);
             }
         });
