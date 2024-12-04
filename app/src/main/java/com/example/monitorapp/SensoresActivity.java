@@ -23,6 +23,8 @@ public class SensoresActivity extends AppCompatActivity {
 
         Button listarUbicacionesButton = findViewById(R.id.listarSensoresButton);
 
+        Button modificarSensorButton = findViewById(R.id.modificarSensorButton);
+
         agregarUbicacionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,6 +37,14 @@ public class SensoresActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SensoresActivity.this, ListarSensoresActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        modificarSensorButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SensoresActivity.this, ModificarSensorActivity.class);
                 startActivity(intent);
             }
         });

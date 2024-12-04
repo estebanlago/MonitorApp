@@ -58,7 +58,7 @@
         android:backgroundTint="@color/orange"
         android:padding="14sp"
         android:text="@string/listarSensoresString"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:icon="@drawable/baseline_format_list_bulleted_24" />
 
@@ -74,5 +74,23 @@
         android:layout_marginEnd="54dp"
         android:text="" />
 
+    <Button
+        android:id="@+id/modificarSensorButton"
+        android:layout_width="360dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/listarSensoresButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="8sp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="8sp"
+        android:backgroundTint="@color/orange"
+        android:padding="14sp"
+        android:text="@string/modificarSensorButtonString"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:icon="@drawable/baseline_edit_24" />
 
 </RelativeLayout>
