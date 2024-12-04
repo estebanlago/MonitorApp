@@ -93,4 +93,23 @@
         android:textStyle="bold"
         app:icon="@drawable/baseline_edit_24" />
 
+    <Button
+        android:id="@+id/eliminarSensorButton"
+        android:layout_width="360dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/modificarSensorButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="8sp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="8sp"
+        android:backgroundTint="@color/red"
+        android:padding="14sp"
+        android:text="@string/eliminarSensorButtonString"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:icon="@drawable/baseline_delete_forever_24" />
+
 </RelativeLayout>
