@@ -72,6 +72,7 @@
             android:layout_marginLeft="1sp"
             android:layout_marginTop="1dp"
             android:layout_marginEnd="12dp"
+            android:hint="@string/especificar_ubicaci_nString"
             android:layout_marginRight="1sp"
             android:layout_marginBottom="1sp"
             android:background="@drawable/edittext_border"

@@ -1,5 +1,6 @@
 package com.example.monitorapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -106,43 +108,58 @@ public class EliminarSensorActivity extends AppCompatActivity {
                     Toast.makeText(EliminarSensorActivity.this, "Por favor, selecciona un sensor.", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-                db.collection("sensores")
-                        .whereEqualTo("nombre", sensorAEliminar)
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    if (!task.getResult().isEmpty()) {
-                                        for (QueryDocumentSnapshot document : task.getResult()) {
-                                            db.collection("sensores").document(document.getId()).delete()
-                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                        @Override
-                                                        public void onSuccess(Void aVoid) {
-                                                            Toast.makeText(EliminarSensorActivity.this, "Sensor eliminado correctamente.", Toast.LENGTH_SHORT).show();
-                                                            finish();
-                                                            overridePendingTransition(0, 0);
-                                                            startActivity(getIntent());
-                                                            overridePendingTransition(0, 0);
+                
+                new AlertDialog.Builder(EliminarSensorActivity.this)
+                        .setTitle("Confirmar eliminación")
+                        .setMessage("¿Estás seguro de que quieres eliminar este sensor?")
+                        .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                db.collection("sensores")
+                                        .whereEqualTo("nombre", sensorAEliminar)
+                                        .get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    if (!task.getResult().isEmpty()) {
+                                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                                            db.collection("sensores").document(document.getId()).delete()
+                                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                        @Override
+                                                                        public void onSuccess(Void aVoid) {
+                                                                            Toast.makeText(EliminarSensorActivity.this, "Sensor eliminado correctamente.", Toast.LENGTH_SHORT).show();
+                                                                            finish();
+                                                                            overridePendingTransition(0, 0);
+                                                                            startActivity(getIntent());
+                                                                            overridePendingTransition(0, 0);
+                                                                        }
+                                                                    })
+                                                                    .addOnFailureListener(new OnFailureListener() {
+                                                                        @Override
+                                                                        public void onFailure(@NonNull Exception e) {
+                                                                            Toast.makeText(EliminarSensorActivity.this, "Error al eliminar el sensor.", Toast.LENGTH_SHORT).show();
+                                                                        }
+                                                                    });
+                                                            break;
                                                         }
-                                                    })
-                                                    .addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception e) {
-                                                            Toast.makeText(EliminarSensorActivity.this, "Error al eliminar el sensor.", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
-                                            break;
-                                        }
-                                    } else {
-                                        Toast.makeText(EliminarSensorActivity.this, "El sensor no existe.", Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    Toast.makeText(EliminarSensorActivity.this, "Error al verificar la existencia del sensor.", Toast.LENGTH_SHORT).show();
-                                }
+                                                    } else {
+                                                        Toast.makeText(EliminarSensorActivity.this, "El sensor no existe.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                } else {
+                                                    Toast.makeText(EliminarSensorActivity.this, "Error al verificar la existencia del sensor.", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
                             }
-                        });
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // User clicked No, do nothing
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
             }
         });
 

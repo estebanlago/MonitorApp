@@ -45,4 +45,5 @@
     <string name="eliminarApartadoSensorButtonString">ELIMINAR</string>
     <string name="eliminar_sensorString">Eliminar sensor</string>
     <string name="esta_acci_n_es_irreversibleString">Esta acción es irreversible.</string>
+    <string name="especificar_ubicaci_nString">Especificar sensor</string>
 </resources>
