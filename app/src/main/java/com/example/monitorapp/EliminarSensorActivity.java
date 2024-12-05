@@ -108,38 +108,44 @@ public class EliminarSensorActivity extends AppCompatActivity {
                 }
 
                 db.collection("sensores")
-                        .whereEqualTo("nombre", sensorAEliminar)
+                        .whereEqualTo("nombre", sensorAEliminar) // Check if sensor exists
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        db.collection("sensores").document(document.getId()).delete()
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
-                                                        Toast.makeText(EliminarSensorActivity.this, "Sensor eliminado correctamente.", Toast.LENGTH_SHORT).show();
-                                                        finish();
-                                                        overridePendingTransition(0, 0);
-                                                        startActivity(getIntent());
-                                                        overridePendingTransition(0, 0);
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Toast.makeText(EliminarSensorActivity.this, "Error al eliminar el sensor.", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                });
-                                        break; // Delete only the first matching sensor
+                                if (task.isSuccessful()) {
+                                    if (!task.getResult().isEmpty()) { // Sensor exists
+                                        // Proceed with deleting the sensor
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            db.collection("sensores").document(document.getId()).delete()
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
+                                                            Toast.makeText(EliminarSensorActivity.this, "Sensor eliminado correctamente.", Toast.LENGTH_SHORT).show();
+                                                            // Refresh the activity
+                                                            finish();
+                                                            overridePendingTransition(0, 0);
+                                                            startActivity(getIntent());
+                                                            overridePendingTransition(0, 0);
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(EliminarSensorActivity.this, "Error al eliminar el sensor.", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                            break; // Delete only the first matching sensor
+                                        }
+                                    } else {
+                                        // Sensor doesn't exist, show error
+                                        Toast.makeText(EliminarSensorActivity.this, "El sensor no existe.", Toast.LENGTH_SHORT).show();
                                     }
                                 } else {
-                                    Toast.makeText(EliminarSensorActivity.this, "No se encontró el sensor.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(EliminarSensorActivity.this, "Error al verificar la existencia del sensor.", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
-
             }
         });
 
