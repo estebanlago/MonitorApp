@@ -76,6 +76,7 @@
             android:layout_marginBottom="1sp"
             android:background="@drawable/edittext_border"
             android:backgroundTint="#F0EAEA"
+            android:maxLength="15"
             android:padding="16sp" />
 
         <Button
