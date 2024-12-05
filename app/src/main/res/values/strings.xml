@@ -42,4 +42,6 @@
     <string name="modificarSensorTituloString">Modificar sensor</string>
     <string name="seleccionarSensorTextView">Seleccione el sensor:</string>
     <string name="eliminarSensorButtonString">ELIMINAR SENSOR</string>
+    <string name="eliminarApartadoSensorButtonString">ELIMINAR</string>
+    <string name="eliminar_sensorString">Eliminar sensor</string>
 </resources>
