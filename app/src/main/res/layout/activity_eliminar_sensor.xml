@@ -13,6 +13,23 @@
         tools:context=".CrearSensorActivity">
 
         <TextView
+            android:id="@+id/bienvenidaUsuarioTextView2"
+            android:layout_width="357dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nombreSensorActualAEliminarSpinner"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="31dp"
+            android:layout_marginEnd="42dp"
+            android:padding="1sp"
+            android:text="@string/esta_acci_n_es_irreversibleString"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            app:drawableLeftCompat="@drawable/baseline_crisis_alert_24"
+            android:drawablePadding="6dp" />
+
+        <TextView
             android:id="@+id/tituloModificarSensoresTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,12 +82,12 @@
             android:id="@+id/eliminarApartadoSensorButton"
             android:layout_width="391dp"
             android:layout_height="60dp"
-            android:layout_below="@+id/dropdownSensorImageView"
+            android:layout_below="@+id/bienvenidaUsuarioTextView2"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="9dp"
             android:layout_marginLeft="8sp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="6dp"
             android:layout_marginEnd="9dp"
             android:layout_marginRight="8sp"
             android:backgroundTint="@color/red"
