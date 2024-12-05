@@ -99,7 +99,7 @@ public class ListarSensoresActivity extends AppCompatActivity {
                                     Intent intent = new Intent(ListarSensoresActivity.this, ResultadoBusquedaSensorActivity.class);
                                     startActivity(intent);
                                 } else {
-                                    Toast.makeText(ListarSensoresActivity.this, "No existen ubicaciones que coincidan.", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(ListarSensoresActivity.this, "No existen sensores que coincidan.", Toast.LENGTH_LONG).show();
                                 }
                             }
                         });

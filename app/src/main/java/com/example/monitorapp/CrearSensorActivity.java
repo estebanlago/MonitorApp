@@ -89,7 +89,7 @@ public class CrearSensorActivity extends AppCompatActivity {
                                 ubicacionAdapter.notifyDataSetChanged();
                             }
                         } else {
-                            Toast.makeText(CrearSensorActivity.this,"Error al obtener datos",
+                            Toast.makeText(CrearSensorActivity.this, "Error al obtener datos",
                                     Toast.LENGTH_LONG).show();
                         }
                     }
@@ -109,7 +109,7 @@ public class CrearSensorActivity extends AppCompatActivity {
                                 tipoAdapter.notifyDataSetChanged();
                             }
                         } else {
-                            Toast.makeText(CrearSensorActivity.this,"Error al obtener datos",
+                            Toast.makeText(CrearSensorActivity.this, "Error al obtener datos",
                                     Toast.LENGTH_LONG).show();
                         }
                     }
@@ -128,11 +128,8 @@ public class CrearSensorActivity extends AppCompatActivity {
                     return;
                 } else if (nombre.length() < 5 || nombre.length() > 15) {
                     Toast.makeText(CrearSensorActivity.this, "El nombre debe tener entre 5 y 15 caracteres.", Toast.LENGTH_LONG).show();
-                } else if (temperaturaIdealSensorEditText.getText().length() == 0 ) {
+                } else if (temperaturaIdealSensorEditText.getText().length() == 0) {
                     Toast.makeText(CrearSensorActivity.this, "Por favor, defina la temperatura ideal.", Toast.LENGTH_LONG).show();
-                    return;
-                } else if (nombreYaExiste(nombre)){
-                    Toast.makeText(CrearSensorActivity.this, "El nombre del sensor ya existe.", Toast.LENGTH_LONG).show();
                     return;
                 } else {
                     float temperaturaIdeal = 0;
@@ -156,45 +153,34 @@ public class CrearSensorActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                     if (task.isSuccessful()) {
-                                        QuerySnapshot querySnapshot = task.getResult();
-                                        if (querySnapshot != null && !querySnapshot.isEmpty()) {
-                                            Toast.makeText(CrearSensorActivity.this, "El nombre de la ubicación ya existe.", Toast.LENGTH_SHORT).show();
-                                        } else {
+                                        if (task.getResult().isEmpty()) { // Check if name exists
+                                            // Name doesn't exist, create sensor
                                             Sensor nuevoSensor = new Sensor(nombre, descripcion, Float.parseFloat(temperaturaIdealSensorEditText.getText().toString()), ubicacion, tipo);
                                             db.collection("sensores").document().set(nuevoSensor)
                                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                         @Override
                                                         public void onSuccess(Void aVoid) {
-                                                            Toast.makeText(CrearSensorActivity.this, "Ingreso exitoso de la ubicación.", Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(CrearSensorActivity.this, "Ingreso exitoso del sensor.", Toast.LENGTH_SHORT).show();
                                                             finish();
                                                         }
                                                     })
                                                     .addOnFailureListener(new OnFailureListener() {
                                                         @Override
                                                         public void onFailure(@NonNull Exception e) {
-                                                            Toast.makeText(CrearSensorActivity.this, "Error al ingresar la ubicación.", Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(CrearSensorActivity.this, "Error al ingresar el sensor.", Toast.LENGTH_SHORT).show();
                                                         }
                                                     });
+                                        } else {
+                                            // Name already exists, show error
+                                            Toast.makeText(CrearSensorActivity.this, "El nombre del sensor ya existe.", Toast.LENGTH_SHORT).show();
                                         }
                                     } else {
                                         Toast.makeText(CrearSensorActivity.this, "Error al verificar la disponibilidad del nombre.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
-
-                    Toast.makeText(CrearSensorActivity.this, "Ingreso exitoso del sensor.", Toast.LENGTH_LONG).show();
-                    finish();
-            }}
-        });
-    }
-    private boolean nombreYaExiste(String nombre) {
-        for (Sensor sensor : sensores) {
-            if (sensor.getNombre().equals(nombre)) {
-                return true;
+                }
             }
-        }
-        return false;
-    }
-}
-
+        });
+    }}
 
