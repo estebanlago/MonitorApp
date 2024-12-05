@@ -177,14 +177,13 @@ public class ModificarSensorActivity extends AppCompatActivity {
                         return;
                     }
                     db.collection("sensores")
-                            .whereEqualTo("nombre", nombreSensorActual) // Check if sensor exists
+                            .whereEqualTo("nombre", nombreSensorActual)
                             .get()
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                     if (task.isSuccessful()) {
-                                        if (!task.getResult().isEmpty()) { // Sensor exists
-                                            // Proceed with updating the sensor
+                                        if (!task.getResult().isEmpty()) {
                                             for (QueryDocumentSnapshot doc : task.getResult()) {
                                                 String id = doc.getId();
                                                 db.collection("sensores").document(id)
@@ -207,7 +206,6 @@ public class ModificarSensorActivity extends AppCompatActivity {
                                                         });
                                             }
                                         } else {
-                                            // Sensor doesn't exist, show error
                                             Toast.makeText(ModificarSensorActivity.this, "El sensor no existe.", Toast.LENGTH_SHORT).show();
                                         }
                                     } else {

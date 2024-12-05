@@ -153,8 +153,7 @@ public class CrearSensorActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                     if (task.isSuccessful()) {
-                                        if (task.getResult().isEmpty()) { // Check if name exists
-                                            // Name doesn't exist, create sensor
+                                        if (task.getResult().isEmpty()) {
                                             Sensor nuevoSensor = new Sensor(nombre, descripcion, Float.parseFloat(temperaturaIdealSensorEditText.getText().toString()), ubicacion, tipo);
                                             db.collection("sensores").document().set(nuevoSensor)
                                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -171,7 +170,6 @@ public class CrearSensorActivity extends AppCompatActivity {
                                                         }
                                                     });
                                         } else {
-                                            // Name already exists, show error
                                             Toast.makeText(CrearSensorActivity.this, "El nombre del sensor ya existe.", Toast.LENGTH_SHORT).show();
                                         }
                                     } else {
