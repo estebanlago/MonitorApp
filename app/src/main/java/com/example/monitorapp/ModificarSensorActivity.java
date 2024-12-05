@@ -176,35 +176,45 @@ public class ModificarSensorActivity extends AppCompatActivity {
                         Toast.makeText(ModificarSensorActivity.this, "Por favor, ingrese un valor numérico válido para la temperatura ideal.", Toast.LENGTH_LONG).show();
                         return;
                     }
-                    db.collection("sensores").whereEqualTo("nombre", nombreSensorActual)
+                    db.collection("sensores")
+                            .whereEqualTo("nombre", nombreSensorActual) // Check if sensor exists
                             .get()
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                     if (task.isSuccessful()) {
-                                        for (QueryDocumentSnapshot doc : task.getResult()) {
-                                            String id = doc.getId();
-                                            db.collection("sensores").document(id)
-                                                    .update("nombre", nombre, "descripcion", descripcion, "ideal", Float.parseFloat(temperaturaIdealSensorEditText.getText().toString()), "tipo", tipo, "ubicacion", ubicacion)
-                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                        @Override
-                                                        public void onSuccess(Void unused) {
-                                                            Toast.makeText(ModificarSensorActivity.this, "Ubicación actualizada", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    })
-                                                    .addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception e) {
-                                                            Toast.makeText(ModificarSensorActivity.this, "Error al actualizar ubicación", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                        if (!task.getResult().isEmpty()) { // Sensor exists
+                                            // Proceed with updating the sensor
+                                            for (QueryDocumentSnapshot doc : task.getResult()) {
+                                                String id = doc.getId();
+                                                db.collection("sensores").document(id)
+                                                        .update("nombre", nombre, "descripcion", descripcion, "ideal", Float.parseFloat(temperaturaIdealSensorEditText.getText().toString()), "tipo", tipo, "ubicacion", ubicacion)
+                                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                            @Override
+                                                            public void onSuccess(Void unused) {
+                                                                Toast.makeText(ModificarSensorActivity.this, "Sensor actualizado", Toast.LENGTH_SHORT).show();
+                                                                finish();
+                                                                overridePendingTransition(0, 0);
+                                                                startActivity(getIntent());
+                                                                overridePendingTransition(0, 0);
+                                                            }
+                                                        })
+                                                        .addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception e) {
+                                                                Toast.makeText(ModificarSensorActivity.this, "Error al actualizar sensor", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        });
+                                            }
+                                        } else {
+                                            // Sensor doesn't exist, show error
+                                            Toast.makeText(ModificarSensorActivity.this, "El sensor no existe.", Toast.LENGTH_SHORT).show();
                                         }
                                     } else {
-                                        Toast.makeText(ModificarSensorActivity.this, "Ubicación no encontrada", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ModificarSensorActivity.this, "Error al verificar la existencia del sensor.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
-
                 }
             }
         });
